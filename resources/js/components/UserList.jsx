@@ -10,7 +10,7 @@ export default function UserList({users}) {
                         <div>{item.email}</div>
                         <div>
                             <Link to="/add-user">Add User</Link>
-                            <Link to="/edit-user">Edit User</Link>
+                            <Link to={`/edit-user/${item.id}`}>Edit User</Link>
                         </div>
                     </div>
                 })

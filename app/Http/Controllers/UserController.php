@@ -13,6 +13,10 @@ class UserController extends Controller {
         return response()->json(User::all());
     }
 
+    public function getUser(Request $request): JsonResponse {
+        return response()->json(User::where('id', '=', $request->id)->first());
+    }
+
     public function save(UserRequest $request): void {
         $user = $request->except($request->password);
         $user['password'] = Hash::make($request->password);

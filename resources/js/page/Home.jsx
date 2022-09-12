@@ -1,6 +1,4 @@
-import Header from "../components/Header";
 import Layout from "../components/Layout";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import UserList from "../components/UserList";
 import { getUsers } from "../helpers/http";
@@ -8,9 +6,12 @@ import { getUsers } from "../helpers/http";
 export default function Home() {
     let [users, setUsers] = useState([]);
 
-    useEffect(async () => {
-        const {data} = await getUsers();
-        setUsers(data);
+    useEffect(() => {
+        getUsers().then((response) => {
+            const {data} = response;
+            setUsers(data);
+        });
+
     }, []);
 
     return <Layout>
