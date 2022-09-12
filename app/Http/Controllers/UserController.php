@@ -24,8 +24,9 @@ class UserController extends Controller {
     }
 
     public function edit(UserRequest $request): void {
-        $user = $request->except($request->password);
+        $user = $request->except('password', 'id');
         $user['password'] = Hash::make($request->password);
+//        $user['email_verified_at'] = now();
 
         User::where('id', $request->id)->update($user);
     }

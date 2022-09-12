@@ -1,47 +1,47 @@
-import {useEffect} from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { saveUser, editUser } from "../helpers/http";
 import Swal from "sweetalert2";
-import { saveUser } from "../helpers/http";
 
 const Edit = ({type, data}) => {
-    console.log(data);
-
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [user, setUser] = useState({});
 
     useEffect(() => {
-        if (data.name) {
-            setName(data.name);
+        console.log(data);
+        if (data) {
+            setUser(data);
         }
-        if (data.email) {
-            setEmail(data.email);
-        }
-    });
+    }, [data]);
+
+
 
     const submitForm = async (e) => {
         e.preventDefault();
 
-        if (!name) {
+        if (!user.name) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Incorrect!'
+                text: 'Incorrect! name'
             })
-        } else if (!email) {
+        } else if (!user.email) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Incorrect!'
+                text: 'Incorrect email!'
             })
-        } else if (!password) {
+        } else if (!user.password) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Incorrect!'
+                text: 'Incorrect password!'
             })
         } else {
-            await saveUser({ name, email, password });
+            if (type === 'add'){
+                await saveUser(user);
+            } else {
+                const id = data.id;
+                await editUser({ ...user, id });
+            }
         }
     }
 
@@ -49,17 +49,17 @@ const Edit = ({type, data}) => {
         <form onSubmit={submitForm} className="edit-form">
             <div className="form-control">
                 <label>User Name:</label>
-                <input type="text" placeholder="Name User" value={name} onChange={(e) => setName(e.target.value)} />
+                <input type="text" placeholder="Name User" value={user.name} onChange={(e) => setUser({...user, 'name': e.target.value})} />
             </div>
 
             <div className="form-control">
                 <label>User Email:</label>
-                <input type="text" placeholder="Email User" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="text" placeholder="Email User" value={user.email} onChange={(e) => setUser({...user, 'email': e.target.value})} />
             </div>
 
             <div className="form-control">
                 <label>User Password:</label>
-                <input type="password" placeholder="Password User" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input type="password" placeholder="Password User" value={user.password} onChange={(e) => setUser({...user, 'password': e.target.value})} />
             </div>
 
             <input type="submit" className="btn btn-block" value="Save User" />

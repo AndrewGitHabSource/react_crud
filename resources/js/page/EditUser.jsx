@@ -18,6 +18,6 @@ export default function EditUser() {
     return <Layout>
         <h4>Edit User Content</h4>
 
-        <Edit type={'Edit'} data={user} />
+        <Edit type={'edit'} data={user} />
     </Layout>;
 }

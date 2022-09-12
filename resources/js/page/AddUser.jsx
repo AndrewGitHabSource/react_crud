@@ -5,6 +5,6 @@ export default function AddUser() {
     return <Layout>
         <h4>Add User Content</h4>
 
-        <Edit />
+        <Edit type={'add'} />
     </Layout>;
 }

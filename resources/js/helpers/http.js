@@ -16,4 +16,6 @@ export const saveUser = async (user) => {
     return await axios.post(baseUrl + 'api/save', user);
 }
 
-
+export const editUser = async (user) => {
+    return await axios.post(baseUrl + 'api/edit', user);
+}
