@@ -1,18 +1,17 @@
 import { useState, useEffect } from 'react';
 import { saveUser, editUser } from "../helpers/http";
 import Swal from "sweetalert2";
+import { useNavigate } from 'react-router-dom';
 
 const Edit = ({type, data}) => {
+    const navigate = useNavigate();
     const [user, setUser] = useState({});
 
     useEffect(() => {
-        console.log(data);
         if (data) {
             setUser(data);
         }
     }, [data]);
-
-
 
     const submitForm = async (e) => {
         e.preventDefault();
@@ -38,9 +37,11 @@ const Edit = ({type, data}) => {
         } else {
             if (type === 'add'){
                 await saveUser(user);
+                navigate('/');
             } else {
                 const id = data.id;
                 await editUser({ ...user, id });
+                navigate('/');
             }
         }
     }
