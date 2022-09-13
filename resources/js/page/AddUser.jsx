@@ -1,6 +1,7 @@
 import Layout from "../components/Layout";
-import Edit from "../components/Edit";
+const Edit = React.lazy(() => import('../components/Edit'));
 import ErrorBoundary from "../errors/ErrorBoundary";
+import React from "react";
 
 export default function AddUser() {
     return (

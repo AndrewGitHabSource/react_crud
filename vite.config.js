@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
 import react from "@vitejs/plugin-react";
 import reactRefresh from '@vitejs/plugin-react-refresh';
+import { chunkSplitPlugin } from 'vite-plugin-chunk-split';
 
 export default defineConfig({
     build: {

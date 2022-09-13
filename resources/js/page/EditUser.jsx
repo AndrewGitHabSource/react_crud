@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import Edit from "../components/Edit";
 import { getUser } from "../helpers/http";
 import { useEffect, useState } from "react";
-import { useParams, Route } from "react-router";
+import { useParams } from "react-router";
 import ErrorBoundary from "../errors/ErrorBoundary";
 
 export default function EditUser() {

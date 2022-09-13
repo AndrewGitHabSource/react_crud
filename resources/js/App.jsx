@@ -1,20 +1,22 @@
 import './bootstrap';
 import '../css/app.css'
-import * as React from "react";
+import  React, { Suspense } from "react";
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from './Page/Home';
-import AddUser from './Page/AddUser';
-import EditUser from './Page/EditUser';
+import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
+const Home = React.lazy(() => import('./Page/Home'));
+const AddUser = React.lazy(() => import('./Page/AddUser'));
+const EditUser = React.lazy(() => import('./Page/EditUser'));
 
 ReactDOM.createRoot(document.getElementById('app')).render(
     <React.StrictMode>
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/add-user" element={<AddUser/>}/>
-                <Route path="/edit-user/:id" element={<EditUser/>}/>
-            </Routes>
-        </BrowserRouter>
+        <HashRouter>
+            <Suspense fallback={<div>Need wait because of loading.......</div>}>
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/add-user" element={<AddUser/>}/>
+                    <Route path="/edit-user/:id" element={<EditUser/>}/>
+                </Routes>
+            </Suspense>
+        </HashRouter>
     </React.StrictMode>
 );
