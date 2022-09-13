@@ -28,6 +28,10 @@ input {
     outline: none;
 }
 
+.user-list {
+    margin-bottom: 20px;
+}
+
 .user-list > div{
     font: 14px Arial;
     display: flex;

@@ -12,6 +12,8 @@ export default function EditUser() {
         getUser(id).then((response) => {
             const {data} = response;
             setUser(data);
+        }).catch((error) => {
+            console.log(error);
         });
     }, []);
 

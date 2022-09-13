@@ -7,11 +7,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\JsonResponse;
-use Carbon\Carbon;
 
 class UserController extends Controller {
-    public function index(): JsonResponse {
-        return response()->json(User::all());
+    private $limit;
+
+    public function __construct()
+    {
+        $this->limit = config('common.limitPagination');
+    }
+
+    public function index(Request $request): JsonResponse {
+        $skip = $request->page === 1 ? 0 : ($this->limit * $request->page) - $this->limit;
+
+        return response()->json(User::skip($skip)->take($this->limit)->get());
     }
 
     public function getUser(Request $request): JsonResponse {
