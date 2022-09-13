@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { saveUser, editUser } from "../helpers/http";
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
+import { validate } from '../helpers/validate';
 
 const Edit = ({type, data}) => {
     const navigate = useNavigate();
@@ -22,13 +23,13 @@ const Edit = ({type, data}) => {
                 title: 'Oops...',
                 text: 'Incorrect! name'
             })
-        } else if (!user.email) {
+        } else if (!user.email || !validate(user.email, 'email')) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Incorrect email!'
             })
-        } else if (!user.password) {
+        } else if (!user.password || !validate(user.password, 'password')) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
