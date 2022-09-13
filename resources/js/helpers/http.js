@@ -1,6 +1,4 @@
-import axios from "axios";
 import { $http } from "../api";
-
 
 export const getUsers = async (page) =>  {
     return await $http.get('api/', {
