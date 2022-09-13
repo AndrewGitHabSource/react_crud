@@ -47,8 +47,6 @@ const Edit = ({type, data}) => {
         }
     }
 
-    throw Error("error!");
-
     return (
         <form onSubmit={submitForm} className="edit-form">
             <div className="form-control">
