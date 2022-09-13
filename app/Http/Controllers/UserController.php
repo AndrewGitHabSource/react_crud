@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\JsonResponse;
+use Carbon\Carbon;
 
 class UserController extends Controller {
     public function index(): JsonResponse {
@@ -26,7 +27,6 @@ class UserController extends Controller {
     public function edit(UserRequest $request): void {
         $user = $request->except('password', 'id');
         $user['password'] = Hash::make($request->password);
-//        $user['email_verified_at'] = now();
 
         User::where('id', $request->id)->update($user);
     }
