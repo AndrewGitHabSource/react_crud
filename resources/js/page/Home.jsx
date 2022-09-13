@@ -25,11 +25,13 @@ export default function Home() {
         setPage(p);
     };
 
-    return <Layout>
-        <h4>Home Content</h4>
+    return (
+        <Layout>
+            <h4>Home Content</h4>
 
-        <UserList users={users}/>
+            <UserList users={users}/>
 
-        <Pagination onChange={handleChange} count={total} page={page} variant="outlined" color="primary" />
-    </Layout>;
+            <Pagination onChange={handleChange} count={total} page={page} variant="outlined" color="primary" />
+        </Layout>
+    );
 }

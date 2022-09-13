@@ -47,6 +47,8 @@ const Edit = ({type, data}) => {
         }
     }
 
+    throw Error("error!");
+
     return (
         <form onSubmit={submitForm} className="edit-form">
             <div className="form-control">
@@ -68,4 +70,5 @@ const Edit = ({type, data}) => {
         </form>
     )
 }
+
 export default Edit

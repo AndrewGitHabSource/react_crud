@@ -1,11 +1,15 @@
 import Layout from "../components/Layout";
 import Edit from "../components/Edit";
+import ErrorBoundary from "../errors/ErrorBoundary";
 
 export default function AddUser() {
+    return (
+        <Layout>
+            <h4>Add User Content</h4>
 
-    return <Layout>
-        <h4>Add User Content</h4>
-
-        <Edit type={'add'} />
-    </Layout>;
+            <ErrorBoundary>
+                <Edit type={'add'} />
+            </ErrorBoundary>
+        </Layout>
+    );
 }
