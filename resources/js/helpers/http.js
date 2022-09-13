@@ -1,23 +1,23 @@
 import axios from "axios";
+import { $http } from "../api";
 
-const baseUrl = import.meta.env.VITE_APP_URL;
 
 export const getUsers = async (page) =>  {
-    return await axios.get(baseUrl + 'api/', {
+    return await $http.get('api/', {
         "params": {page},
     });
 }
 
 export const getUser = async (id) =>  {
-    return await axios.get(baseUrl + 'api/get-user', {
+    return await $http.get('api/get-user', {
         "params": {id},
     });
 }
 
 export const saveUser = async (user) => {
-    return await axios.post(baseUrl + 'api/save', user);
+    return await $http.post('api/save', user);
 }
 
 export const editUser = async (user) => {
-    return await axios.post(baseUrl + 'api/edit', user);
+    return await $http.post('api/edit', user);
 }

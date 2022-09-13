@@ -8,6 +8,8 @@
 
         @viteReactRefresh
         @vite('resources/js/app.js')
+
+        <script>window.Laravel = {csrfToken: '{{ csrf_token() }}'}</script>
     </head>
 
     <body>
