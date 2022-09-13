@@ -19,7 +19,10 @@ class UserController extends Controller {
     public function index(Request $request): JsonResponse {
         $skip = $request->page === 1 ? 0 : ($this->limit * $request->page) - $this->limit;
 
-        return response()->json(User::skip($skip)->take($this->limit)->get());
+        return response()->json([
+            'users' => User::skip($skip)->take($this->limit)->get(),
+            'total' => User::count(),
+        ]);
     }
 
     public function getUser(Request $request): JsonResponse {

@@ -7,11 +7,14 @@ import Pagination from "@mui/material/Pagination";
 export default function Home() {
     let [users, setUsers] = useState([]);
     let [page, setPage] = useState(1);
+    let [total, setTotal] = useState(0);
+    const count = 5;
 
     useEffect(() => {
         getUsers(page).then((response) => {
             const {data} = response;
-            setUsers(data);
+            setUsers(data.users);
+            setTotal(Math.ceil(data.total / count));
         }).catch((error) => {
             console.log(error);
         });
@@ -27,6 +30,6 @@ export default function Home() {
 
         <UserList users={users}/>
 
-        <Pagination onChange={handleChange} count={3} page={page} variant="outlined" color="primary" />
+        <Pagination onChange={handleChange} count={total} page={page} variant="outlined" color="primary" />
     </Layout>;
 }
