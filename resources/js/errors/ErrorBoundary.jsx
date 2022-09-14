@@ -24,7 +24,6 @@ export default class ErrorBoundary extends React.Component {
     };
 
     render() {
-
         const {hasError, error, info} = this.state;
         const {children} = this.props;
 
