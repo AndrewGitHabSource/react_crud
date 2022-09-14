@@ -19,6 +19,7 @@ const userSlice = createSlice({
         editUser(state, action) {
             state.users = state.users.filter(item => item.payload.id === action.payload).map((elem) => {
                 elem.payload.name = 'Leo';
+
                 return elem;
             });
         }

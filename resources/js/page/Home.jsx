@@ -41,8 +41,6 @@ export default function Home() {
         dispatch(editUser(1));
     }
 
-    console.log(usersStore);
-
     return (
         <Layout>
             <h4>Home Content</h4>
