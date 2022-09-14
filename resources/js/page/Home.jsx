@@ -5,7 +5,7 @@ import { getUsers } from "../helpers/http";
 import Pagination from "@mui/material/Pagination";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { addUser } from "../store/reducers/reduser";
+import { addUser, editUser } from "../store/reducers/reduser";
 
 export default function Home() {
     const count = 5;
@@ -32,8 +32,13 @@ export default function Home() {
 
     const addUserInStorage = () => {
         dispatch(addUser({
+            "id": 1,
             "name": "Lola",
         }));
+    }
+
+    const editUserInStorage = () => {
+        dispatch(editUser(1));
     }
 
     console.log(usersStore);
@@ -47,6 +52,7 @@ export default function Home() {
             <Pagination onChange={handleChange} count={total} page={page} variant="outlined" color="primary" />
 
             <button onClick={addUserInStorage}>Add User to Storage</button>
+            <button onClick={editUserInStorage}>Edit user</button>
 
             <h4>Users from stores:</h4>
             {
