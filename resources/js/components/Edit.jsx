@@ -3,10 +3,13 @@ import { saveUser, editUser } from "../helpers/http";
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
 import { validate } from '../helpers/validate';
+import { useSaveUserMutation, useUpdateUserMutation } from "../store/queries/apiUser";
 
 const Edit = ({type, data}) => {
     const navigate = useNavigate();
     const [user, setUser] = useState({});
+    const [saveUser] = useSaveUserMutation();
+    const [updateUser] = useUpdateUserMutation();
 
     useEffect(() => {
         if (data) {
@@ -36,12 +39,12 @@ const Edit = ({type, data}) => {
                 text: 'Incorrect password!'
             })
         } else {
-            if (type === 'add'){
-                await saveUser(user);
+            if (type === 'add') {
+                saveUser(user);
                 navigate('/');
             } else {
                 const id = data.id;
-                await editUser({ ...user, id });
+                updateUser({ ...user, id });
                 navigate('/');
             }
         }

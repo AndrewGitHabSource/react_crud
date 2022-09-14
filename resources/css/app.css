@@ -50,3 +50,7 @@ input {
     font: 14px Arial;
     margin-right: 5px;
 }
+
+.view {
+    height: 700px;
+}
