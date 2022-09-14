@@ -11,7 +11,7 @@ export const apiUser = createApi({
             query: (page = 1) => `api?page=${page}`,
         }),
         getUser: builder.query({
-            query: (id) => `api?id=${id}`,
+            query: (id) => `api/get-user?id=${id}`,
         }),
         saveUser: builder.mutation({
             query: ({...data }) => ({
@@ -19,7 +19,6 @@ export const apiUser = createApi({
                 method: 'POST',
                 body: data,
             }),
-            transformResponse: (response, meta, arg) => response.data,
         }),
         updateUser: builder.mutation({
             query: ({...data }) => ({
@@ -27,9 +26,8 @@ export const apiUser = createApi({
                 method: 'POST',
                 body: data,
             }),
-            transformResponse: (response, meta, arg) => response.data,
         }),
     }),
-})
+});
 
 export const { useGetUsersQuery, useGetUserQuery, useSaveUserMutation, useUpdateUserMutation } = apiUser;

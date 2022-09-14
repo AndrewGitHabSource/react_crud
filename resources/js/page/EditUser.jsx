@@ -4,26 +4,19 @@ import { getUser } from "../helpers/http";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import ErrorBoundary from "../errors/ErrorBoundary";
+import { useGetUserQuery } from "../store/queries/apiUser";
 
 export default function EditUser() {
     let [user, setUser] = useState({});
     const {id} = useParams();
-
-    useEffect(() => {
-        getUser(id).then((response) => {
-            const {data} = response;
-            setUser(data);
-        }).catch((error) => {
-            console.log(error);
-        });
-    }, []);
+    const { data, error, isLoading } = useGetUserQuery(id);
 
     return (
         <Layout>
             <h4>Edit User Content</h4>
 
             <ErrorBoundary>
-                <Edit type={'edit'} data={user} />
+                <Edit type={'edit'} data={data} />
             </ErrorBoundary>
         </Layout>
     );
