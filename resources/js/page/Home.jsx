@@ -5,12 +5,16 @@ import { getUsers } from "../helpers/http";
 import Pagination from "@mui/material/Pagination";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { addUser } from "../store/reducers/reduser";
 
 export default function Home() {
+    const count = 5;
+    const dispatch = useDispatch();
     let [users, setUsers] = useState([]);
     let [page, setPage] = useState(1);
     let [total, setTotal] = useState(0);
-    const count = 5;
+    let usersStore = useSelector((state) => state.user.users);
+
 
     useEffect(() => {
         getUsers(page).then((response) => {
@@ -26,7 +30,12 @@ export default function Home() {
         setPage(p);
     };
 
-    const usersStore = useSelector((state) => state.user.users);
+    const addUserInStorage = () => {
+        dispatch(addUser({
+            "name": "Lola",
+        }));
+    }
+
     console.log(usersStore);
 
     return (
@@ -37,10 +46,12 @@ export default function Home() {
 
             <Pagination onChange={handleChange} count={total} page={page} variant="outlined" color="primary" />
 
+            <button onClick={addUserInStorage}>Add User to Storage</button>
+
             <h4>Users from stores:</h4>
             {
                 usersStore.map((element) => {
-                    return <div>{element.name}</div>
+                    return <div>{element.payload.name}</div>
                 })
             }
         </Layout>
