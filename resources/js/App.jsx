@@ -7,8 +7,6 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import View from './page/View';
 import {apiUser} from "./store/queries/apiUser";
-// import Home from './Page/Home';
-
 const Home = React.lazy(() => import('./Page/Home'));
 const AddUser = React.lazy(() => import('./Page/AddUser'));
 const EditUser = React.lazy(() => import('./Page/EditUser'));

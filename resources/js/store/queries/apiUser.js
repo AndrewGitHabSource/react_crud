@@ -6,9 +6,11 @@ export const apiUser = createApi({
         baseUrl: import.meta.env.VITE_APP_URL
     }),
     tagTypes: ['User'],
+    entityTypes: ["Users"],
     endpoints: (builder) => ({
         getUsers: builder.query({
             query: (page = 1) => `api?page=${page}`,
+            providesTags: ['Users'],
         }),
         getUser: builder.query({
             query: (id) => `api/get-user?id=${id}`,
@@ -19,6 +21,7 @@ export const apiUser = createApi({
                 method: 'POST',
                 body: data,
             }),
+            invalidatesTags: ["Users"],
         }),
         updateUser: builder.mutation({
             query: ({...data }) => ({
@@ -26,8 +29,9 @@ export const apiUser = createApi({
                 method: 'POST',
                 body: data,
             }),
+            invalidatesTags: ["Users"]
         }),
     }),
 });
 
-export const { useGetUsersQuery, useGetUserQuery, useSaveUserMutation, useUpdateUserMutation } = apiUser;
+export const { useGetUsersQuery, useGetUserQuery, useSaveUserMutation, useUpdateUserMutation, onQueryStarted } = apiUser;

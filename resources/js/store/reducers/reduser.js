@@ -9,9 +9,6 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        getUsers(state) {
-            return state.users;
-        },
         addUser(state, user) {
             state.users.push(user);
         },
