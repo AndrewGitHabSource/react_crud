@@ -1,8 +1,6 @@
 import Layout from "../components/Layout";
 import React, { useRef } from "react";
 import { Canvas } from '@react-three/fiber'
-import Box from "../elements/Box"
-import Sphere from "../elements/Sphere";
 import Planet from "../elements/Planet";
 
 export default function View(props) {
