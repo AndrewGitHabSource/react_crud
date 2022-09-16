@@ -14,6 +14,7 @@ export const apiUser = createApi({
         }),
         getUser: builder.query({
             query: (id) => `api/get-user?id=${id}`,
+            providesTags: ['Users'],
         }),
         saveUser: builder.mutation({
             query: ({...data }) => ({
@@ -29,7 +30,7 @@ export const apiUser = createApi({
                 method: 'POST',
                 body: data,
             }),
-            invalidatesTags: ["Users"]
+            invalidatesTags: ["Users"],
         }),
     }),
 });
