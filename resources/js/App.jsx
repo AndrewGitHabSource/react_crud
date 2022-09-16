@@ -2,7 +2,7 @@ import './bootstrap';
 import '../css/app.css'
 import  React, { Suspense } from "react";
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
+import { Route, Routes, HashRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import View from './page/View';

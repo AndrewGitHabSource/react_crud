@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { Canvas } from '@react-three/fiber'
 import Box from "../elements/Box"
 import Sphere from "../elements/Sphere";
+import Planet from "../elements/Planet";
 
 export default function View(props) {
     const ref = useRef();
@@ -15,8 +16,7 @@ export default function View(props) {
                 <Canvas>
                     <ambientLight />
                     <pointLight position={[10, 10, 10]} />
-                    <Box position={[-1.2, 0, 0]} />
-                    <Sphere position={[2.2, 0, 0]} />
+                    <Planet position={[0.5, 0, 0]} />
                 </Canvas>
             </div>
         </Layout>
