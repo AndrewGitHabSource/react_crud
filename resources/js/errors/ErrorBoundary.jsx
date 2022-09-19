@@ -9,8 +9,8 @@ export default class ErrorBoundary extends React.Component {
         super(props);
         this.state = {
             hasError: false,
-            error: null,
-            info: null,
+            error: '',
+            info: {},
         };
     }
 
@@ -19,6 +19,9 @@ export default class ErrorBoundary extends React.Component {
     };
 
     componentDidCatch = (error, info) => {
+        console.log(error);
+        console.log(info);
+
         this.setState({
             error,
             info
