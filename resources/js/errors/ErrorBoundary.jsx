@@ -1,5 +1,4 @@
 import React from "react";
-import fa from "../../../public/build/assets/Home.f7085b35";
 
 const ErrorComponent = () => {
     return <h1>Something went wrong. Error!</h1>;
