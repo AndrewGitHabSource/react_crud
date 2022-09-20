@@ -10,11 +10,14 @@ export const apiUser = createApi({
     endpoints: (builder) => ({
         getUsers: builder.query({
             query: (page = 1) => `api?page=${page}`,
-            providesTags: ['Users'],
+            providesTags: (result, error, arg) =>
+                result ? [...result.users.map(({ id }) => ({ type: 'User', id })), 'User'] : ['User'],
         }),
         getUser: builder.query({
             query: (id) => `api/get-user?id=${id}`,
-            providesTags: ['Users'],
+            providesTags: (result, error, arg) => {
+                return [{ type: 'User', id: arg }];
+            },
         }),
         saveUser: builder.mutation({
             query: ({...data }) => ({
@@ -22,7 +25,7 @@ export const apiUser = createApi({
                 method: 'POST',
                 body: data,
             }),
-            invalidatesTags: ["Users"],
+            invalidatesTags: ['User'],
         }),
         updateUser: builder.mutation({
             query: ({...data }) => ({
@@ -30,7 +33,7 @@ export const apiUser = createApi({
                 method: 'POST',
                 body: data,
             }),
-            invalidatesTags: ["Users"],
+            invalidatesTags: (result, error, arg) => [{ type: 'User', id: arg.id }],
         }),
     }),
 });
